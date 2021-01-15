@@ -12,45 +12,45 @@
                 width: 1350px;
                 padding: 32px;
                 background-size: cover;
-                align-items: center;
-            
-          }
-          .dealer-area
-          {
-              justify-items: center;
-              align-items: center;
-              display: center;
+                align-items: center;  
+              }
 
-          }
-          .player-area
-          {
+       
+        .dealer-area
+        {
+            justify-items: center;
+            align-items: center;
+            display: center;
 
-              justify-items: center;
-              align-items: center;
+        }
+        .player-area
+        {
 
-          }
+            justify-items: center;
+            align-items: center;
+
+        }
 
 
-      .card {
-        border: thin solid black;
-        background-color: white;
-        border-radius: 16px;
-        height: 150px;
-        width: 90px;
-        margin-bottom: 16px;
-        display: grid;
-        align-items: center ;
-        justify-items: center;
-      }
+        .card {
+          border: thin solid black;
+          background-color: white;
+          border-radius: 16px;
+          height: 150px;
+          width: 90px;
+          margin-bottom: 16px;
+          display: grid;
+          align-items: center ;
+          justify-items: center;
+        }
+       
 
-    
-      
+
     </style>
   </head>
   <body>
   
     <div class ="main">
-
             <div class="character">
                 <div class="title">Dealer</div>
                 <div class="dealer-area">
@@ -58,8 +58,6 @@
                 <div id="dealer-1" class="card"></div>
                 </div>
             </div>
-        
-        
         <div class="character">
             <div class="title">Player</div>
             <div class="player-area">
@@ -67,9 +65,7 @@
             <div id="player-1" class="card"></div>
             </div>
         </div>
-
     </div>
-
     </div>
 
   </body>
@@ -79,30 +75,25 @@
     var dealerCards
     var playerCards
 
-    var buildDeck = () => {
+    function buildDeck() {
       var newDeck = []
-      var suits = ['heart', 'spade', 'diamond', 'club']
-      var values = [1,2,3,4,5,6,7,8,9,10,11,12,13]
+      var suits = ["Hearts", "Spades", "Diamonds", "Clubs"]
+      var values = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
 
       suits.forEach((suit) => {
         values.forEach((value) => {
-
           var card = {
             suit: suit,
             value: value,
           }
-
           newDeck.push(card)
-
         })
       })
-
       return newDeck
     }
     
-    var shuffle = (deck) => {
-      // we declare 2 parameters here even though we won't use them since we are using Math.random() to deteremine 1 or -1 instead of these values
-      var sortFunc = (card1, card2) => { 
+    function shuffle (deck) {
+      function sortFunc (card1, card2) { 
         var result
 
         if ( Math.random() > .5 ) {
@@ -110,15 +101,12 @@
         } else {
           result = -1
         }
-
         return result
       }
-
       deck.sort(sortFunc)
 
       return deck
     }
-
     var get2Cards = () => {
       var card1 = deck.shift()
       var card2 = deck.shift()
@@ -128,7 +116,7 @@
       return cards
     }
 
-    var displayCards = () => {
+    function displayCards() {
 
       var dealerCard0 = dealerCards[0]
       document.getElementById("dealer-0").innerHTML = dealerCard0.value + " of " + dealerCard0.suit
@@ -143,8 +131,7 @@
       document.getElementById("player-1").innerHTML = playerCard1.value + " of " + playerCard1.suit
 
     }
-
-    var declareWinner = () => {
+    function declareWinner () {
       var dealerTotal = 0
       var playerTotal = 0
 
@@ -158,9 +145,9 @@
 
       var message
       if (playerTotal > dealerTotal) {
-        message = "Cool! Player beats dealer, " + playerTotal + " to " + dealerTotal + "."
+        message = "Congratulations! The player has beat the dealer, " + playerTotal + " to " + dealerTotal + "."
       } else {
-        message = "Bummer. Dealer won, " + dealerTotal + " to " + playerTotal + "."
+        message = "Sorry, the dealer has won, " + dealerTotal + " to " + playerTotal + "."
       }
 
       alert(message)
@@ -171,7 +158,7 @@
       }
     }
     
-    var startGame = () => {
+    function startGame() {
       var newDeck = buildDeck()
       var shuffledNewDeck = shuffle(newDeck)
       deck = shuffledNewDeck
@@ -181,7 +168,6 @@
       displayCards()
       setTimeout(declareWinner, 2000)
     }
-
     startGame()
 
   </script>
